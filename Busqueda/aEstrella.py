@@ -11,17 +11,24 @@ Creado el: 25 de marzo de 2016
 Para ver el repositorio completo puede visitar el siguiente link:
 https://github.com/Skar241/IA_2016/tree/master/Busqueda
 
+Python version 3
+
+Algoritmo de Busqueda A*, implementado para un puzzle de 15 piezas
+Ejecucion:
+	p = Puzzle()
+	p.shuffle(10)
+	solucion = Aestrella.search(p,lambda n: n == Puzzle(),
+					lambda h: ManhattanDistance().distance_to_target(h))
+	print (solucion)
 """
 
 import queue
 from search import trajectory
-from manhattan import ManhattanDistance
 
 class Aestrella:
 
-	def search(start,stop):
+	def search(start,stop,heuristic):
 		agenda = queue.PriorityQueue()
-		md = ManhattanDistance()
 		explored = set()
 		if(stop(start)):
 			return trajectory(start)
@@ -32,8 +39,8 @@ class Aestrella:
 			nodo = agenda.get()
 			if(stop(nodo[1])):
 				return trajectory(nodo[1])
-			explored.add(nodo)
+			explored.add(nodo[1])
 			for child in nodo[1].expand():
 				if(not child in explored):
-					agenda.put((child.depth+md.distance_to_target(child),child))
+					agenda.put((child.depth+heuristic(child),child))
 			
