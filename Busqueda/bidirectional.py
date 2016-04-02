@@ -38,4 +38,4 @@ class Bidirectional:
                     return trajectory(tmp3)+trajectory(s)
                 for child in s.expand():
                     if(not child in Backward):
-                    Backward.add(child)
+                        Backward.add(child)
