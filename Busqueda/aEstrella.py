@@ -29,8 +29,8 @@ class Aestrella:
 
 	def search(start,stop,heuristic):
 		agenda = queue.PriorityQueue()
-		explored = set()
 		if(stop(start)):
+		explored = set() #tabla hash
 			return trajectory(start)
 
 		agenda.put((0,start))
