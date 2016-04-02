@@ -25,16 +25,17 @@ class Bidirectional:
             while(tmp):
                 tmp2 = tmp.pop()
                 if(s.configuration == tmp2.configuration):
-                    return trajectory(s)+trajectory(tmp2)#.reverse()
+                    return trajectory(s)+trajectory(tmp2)
                 for child in s.expand():
-                    Forward.add(child)
+                    if(not child in Forward):
+                        Forward.add(child)
         while (Backward):
             s = Backward.pop()
             tmp = Forward.copy()
             while(tmp):
                 tmp3 = tmp.pop()
                 if(s.configuration == tmp3.configuration):
-                    return trajectory(tmp3)+trajectory(s)#.reverse()
+                    return trajectory(tmp3)+trajectory(s)
                 for child in s.expand():
-                #    if(not child in Backward):
+                    if(not child in Backward):
                     Backward.add(child)
