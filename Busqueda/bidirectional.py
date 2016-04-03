@@ -1,8 +1,21 @@
 # -*- coding: utf-8 -*-
 """
+Artificial Intellence 1766
+Engineering Faculty
+UNAM
+
 Created on Fri Apr  1 10:19:25 2016
 
 @author: :)
+
+Python version 3
+
+Algoritmo de Busqueda Bidireccional, implementado para un puzzle de 15 piezas
+Ejecucion:
+    p = Puzzle()
+    p.shuffle(10)
+    solucion = Aestrella.search(p,Puzzle())
+    print (solucion)
 
 """
 from search import trajectory

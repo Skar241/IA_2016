@@ -8,9 +8,6 @@ Created on Fri Apr 25 20:29:21 2016
 
 @author: skar
 
-Para ver el repositorio completo puede visitar el siguiente link:
-https://github.com/Skar241/IA_2016/tree/master/Busqueda
-
 Python version 3
 
 Algoritmo de Busqueda IDA*, implementado para un puzzle de 15 piezas

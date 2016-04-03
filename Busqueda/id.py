@@ -1,5 +1,18 @@
 """
+Artificial Intellence 1766
+Engineering Faculty
+UNAM
+
 @author:Pérez Villarreal Guillermo
+
+Python version 3
+
+Algoritmo de Busqueda ID, implementado para un puzzle de 15 piezas
+Ejecucion:
+    p = Puzzle()
+    p.shuffle(10)
+    solucion = Aestrella.search(p,lambda n: n == Puzzle())
+    print (solucion)
 """
 from collections import deque
 from search import trajectory

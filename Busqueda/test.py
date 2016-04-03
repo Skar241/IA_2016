@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 """
+Artificial Intellence 1766
+Engineering Faculty
+UNAM
+
 Created on Sat Apr  2 19:59:51 2016
 
 @author: skar
@@ -39,7 +43,7 @@ heuristic = lambda h : ManhattanDistance().distance_to_target(h)
 print ("Puzzle to find a solution: ")
 print (p.shuffle(20))
 
-x = input("Press Enter key to init ") 
+x = input("Press Enter key to init: ") 
 
 for i in range(1,7):
 	print ("\n"+titles[i])
