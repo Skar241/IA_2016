@@ -1,6 +1,7 @@
 """
 @author:Pérez Villarreal Guillermo
 """
+from collections import deque
 from search import trajectory
 
 class DLS:

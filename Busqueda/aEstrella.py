@@ -35,7 +35,7 @@ class Aestrella:
 
 		agenda.put((0,start))
 
-		while (agenda):
+		while (not agenda.empty()):
 			nodo = agenda.get()
 			if(stop(nodo[1])):
 				return trajectory(nodo[1])
@@ -43,4 +43,4 @@ class Aestrella:
 			for child in nodo[1].expand():
 				if(not child in explored):
 					agenda.put((child.depth+heuristic(child),child))
-			
+		return False			
