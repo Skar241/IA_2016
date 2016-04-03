@@ -1,3 +1,8 @@
+"""
+@author:Pérez Villarreal Guillermo
+"""
+from search import trajectory
+
 class DLS:
 
     @staticmethod    
