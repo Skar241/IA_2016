@@ -1,41 +1,55 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Apr  1 10:19:25 2016
-
-@author: :)
-
-"""
-
-
+    Created on Fri Apr  1 10:19:25 2016
+    
+    @author: :)
+    
+    """
 
 from search import trajectory
 
 class Bidirectional:
-
+    
     def search(start,stop):
         Forward = set()
-        Backward =set()
+        Backward = set()
+        Explored = set()
         Forward.add(start)
         Backward.add(stop)
         
-        #while ():
-        while(Forward):
-            s = Forward.pop()
-            tmp = Backward.copy()              
-            while(tmp):
-                tmp2 = tmp.pop()
-                if(s.configuration == tmp2.configuration):
-                    return trajectory(s)+trajectory(tmp2)
+        while (True):
+            ForwardCpy = Forward.copy()
+            while(ForwardCpy):
+                Forward.pop()
+                s = ForwardCpy.pop()
+                Explored.add(s)
+                if(s in Backward):
+                    tmp = Backward.copy()
+                    tmp2 = tmp.pop()
+                    while(not s.__eq__(tmp2)):
+                        tmp2 = tmp.pop()
+                    traj = trajectory(tmp2)
+                    traj.pop()
+                    traj.reverse()
+                    return trajectory(s)+traj
                 for child in s.expand():
-                    if(not child in Forward):
+                    if(not child in Explored):
                         Forward.add(child)
-        while (Backward):
-            s = Backward.pop()
-            tmp = Forward.copy()
-            while(tmp):
-                tmp3 = tmp.pop()
-                if(s.configuration == tmp3.configuration):
-                    return trajectory(tmp3)+trajectory(s)
+            
+            BackwardCpy = Backward.copy()
+            while (BackwardCpy):
+                Backward.pop()
+                s = BackwardCpy.pop()
+                Explored.add(s)
+                if(s in Forward):
+                    tmp = Forward.copy()
+                    tmp2 = tmp.pop()
+                    while(not s.__eq__(tmp2)):
+                        tmp2 = tmp.pop()
+                    traj = trajectory(s)
+                    traj.pop()
+                    traj.reverse()
+                    return trajectory(tmp2)+traj
                 for child in s.expand():
-                    if(not child in Backward):
+                    if(not child in Explored):
                         Backward.add(child)
