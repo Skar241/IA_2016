@@ -4,9 +4,9 @@ Artificial Intellence 1766
 Engineering Faculty
 UNAM
 
-Creado el: 25 de marzo de 2016
-@author:
+Created on Fri Apr 25 19:59:51 2016
 
+@author: skar
 
 Para ver el repositorio completo puede visitar el siguiente link:
 https://github.com/Skar241/IA_2016/tree/master/Busqueda
@@ -29,8 +29,8 @@ class Aestrella:
 
 	def search(start,stop,heuristic):
 		agenda = queue.PriorityQueue()
-		if(stop(start)):
 		explored = set() #tabla hash
+		if(stop(start)):
 			return trajectory(start)
 
 		agenda.put((0,start))

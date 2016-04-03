@@ -4,9 +4,9 @@ Artificial Intellence 1766
 Engineering Faculty
 UNAM
 
-Creado el: 25 de marzo de 2016
-@author:
+Created on Fri Apr 25 20:29:21 2016
 
+@author: skar
 
 Para ver el repositorio completo puede visitar el siguiente link:
 https://github.com/Skar241/IA_2016/tree/master/Busqueda

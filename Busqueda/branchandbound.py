@@ -7,29 +7,34 @@ Created on Fri Apr 01 23:08:34 2016
 
 from search import trajectory
 
-class BranchAndBound:
+class DFBB:
+    
+    def searchDLS(start,stop,cota):
+        agenda = []
+        explored = set()
+        if(stop(start)):
+            return trajectory(start)
+        agenda.append(start)
+        while(agenda):
+            nodo = agenda.pop()
+            explored.add(nodo)
+            for child in nodo.expand():
+                if(stop(child)):
+                    return trajectory(child)
+                elif(not child in explored and cota > child.depth):
+                    agenda.append(child)
 
-    def search(start, stop, puzzle):
-        actions = ['E','W','N','S']
-        costo = set()
-        hijo = set()
-        nodoini = set(puzzle)
-        nodo_recorrido = queue.PriorityQueue()
-        nodo_vivo = queue.PriorityQueue()
-        nodo_recorrido.add(nodoini)
-        nodo_vivo.add(nodoini)
+        return false
         
-        while(nodo_vivo != empty)
-            eNodo = nodo_vivo.pop()
-            nHijo = eNodo.hijo(actions)
-            if(nHijo != null & !nodo_recorrido(nHijo))
-                if(nHijo.costo() == 0)
-                    return nHijo
-                else:
-                    
-                    nodo_vivo.add(nHijo)
-                    nodo_recorrido.add(nHijo)
-        return nodo_recorrido
+    def searchDFBB(start,stop,cota):
+        solucion = searchDLS(start,stop,cota)
+        while (solucion):
+            best = solucion
+            solucion = searchDLS(start,stop,cota)
+            cota -= cota
+        solucion = best
+        print ("The solution was found with k = "+str(cota))
+        return solucion
                 
             
         
