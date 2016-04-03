@@ -5,11 +5,10 @@ Created on Fri Apr  1 10:19:25 2016
 @author: :)
 
 """
-
 from search import trajectory
 
 class Bidirectional:
-
+    
     def search(start,stop):
         Forward = set()
         Backward = set()
@@ -25,7 +24,7 @@ class Bidirectional:
                 Explored.add(s)
                 if(s in Backward):
                     tmp = Backward.copy()
-                    tmp2 = tmp.pop()              
+                    tmp2 = tmp.pop()
                     while(not s.__eq__(tmp2)):
                         tmp2 = tmp.pop()
                     traj = trajectory(tmp2)
@@ -43,7 +42,7 @@ class Bidirectional:
                 Explored.add(s)
                 if(s in Forward):
                     tmp = Forward.copy()
-                    tmp2 = tmp.pop()              
+                    tmp2 = tmp.pop()
                     while(not s.__eq__(tmp2)):
                         tmp2 = tmp.pop()
                     traj = trajectory(s)
