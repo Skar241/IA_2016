@@ -59,7 +59,7 @@ for i in range(1,7):
 	elapsedTime = time() - startTime
 	if(solution):
 		print (solution)
-		print("Gerneral stats of: "+titles[i])
+		print("General stats of: "+titles[i])
 		print ("Number of steps: "+str(len(solution)))
 	else:
 		print("Gerneral stats of: "+titles[i])
