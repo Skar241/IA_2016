@@ -34,7 +34,7 @@ titles = {
 	4: "Depth Limited Search",
 	5: "Iterative Deepening",
 	6: "Iterative Deepening A*"
-}
+	}
 
 p = Puzzle()
 stop = lambda n: n == Puzzle()
