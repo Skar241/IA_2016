@@ -36,33 +36,63 @@ titles = {
 	6: "Iterative Deepening A*"
 	}
 
+def test(p,p1,stop,heuristic):
+	k = int(input("insert the value of k: "))
+	input("Press Enter key to init: ") 
+
+	for i in range(1,7):
+		print ("\n"+titles[i])
+		startTime = time()
+		if(i == 1 or i == 6):
+			solution = algoritms[i](p,stop,heuristic)
+		elif(i==3 or i == 4):
+			solution = algoritms[i](p,stop,k)
+		elif (i == 5):
+			solution = algoritms[i](p,stop)
+		else:
+			solution = algoritms[i](p,p1)
+		elapsedTime = time() - startTime
+		if(solution):
+			print (solution)
+			print("General stats of: "+titles[i])
+			print ("Number of steps: "+str(len(solution)))
+		else:
+			print("Gerneral stats of: "+titles[i])
+			print ("solution was not found ")
+		print("Elapsed time: "+str(elapsedTime)+" seconds ")
+		input("Press Enter key to continue: ")
+
 p = Puzzle()
 stop = lambda n: n == Puzzle()
 heuristic = lambda h : ManhattanDistance().distance_to_target(h)
-
+p.shuffle(int(input("insert the numer of movements")))
 print ("Puzzle to find a solution: ")
-print (p.shuffle(20))
+print (p)
+test(p,Puzzle(),stop,heuristic)
+"""
+stop = lambda n: heuristic(n) <=-10
+heuristic = lambda h : -ManhattanDistance().distance_to_target(h)
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 10): ")
+test(Puzzle(),tmp[-1],stop,heuristic)
 
-x = input("Press Enter key to init: ") 
+stop = lambda n: heuristic(n) <=-20
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 20): ")
+test(Puzzle(),tmp[-1],stop,heuristic)
 
-for i in range(1,7):
-	print ("\n"+titles[i])
-	startTime = time()
-	if(i == 1 or i == 6):
-		solution = algoritms[i](p,stop,heuristic)
-	elif(i==3 or i == 4):
-		solution = algoritms[i](p,stop,heuristic(p)+1)
-	elif (i == 5):
-		solution = algoritms[i](p,stop)
-	else:
-		solution = algoritms[i](p,Puzzle())
-	elapsedTime = time() - startTime
-	if(solution):
-		print (solution)
-		print("General stats of: "+titles[i])
-		print ("Number of steps: "+str(len(solution)))
-	else:
-		print("Gerneral stats of: "+titles[i])
-		print ("solution was not found ")
-	print("Elapsed time: "+str(elapsedTime)+" seconds ")
-	x = input("Press Enter key to continue: ")
+stop = lambda n: heuristic(n) <=-30
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 30): ")
+test(Puzzle(),tmp[-1],stop,heuristic)
+
+stop = lambda n: heuristic(n) <=-40
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 40): ")
+test(Puzzle(),tmp[-1],stop,heuristic)
+
+stop = lambda n: heuristic(n) <=-50
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 50): ")
+test(Puzzle(),tmp[-1],stop,heuristic)
+"""

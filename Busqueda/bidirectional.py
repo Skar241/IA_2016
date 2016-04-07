@@ -43,6 +43,10 @@ class Bidirectional:
                     traj = trajectory(tmp2)
                     traj.pop()
                     traj.reverse()
+                    tmp2 = traj.pop()
+                    while(not stop.__eq__(tmp2)):
+                        tmp2 = traj.pop()
+                    traj.append(stop)
                     return trajectory(s)+traj
                 for child in s.expand():
                     if(not child in Explored):
@@ -61,6 +65,10 @@ class Bidirectional:
                     traj = trajectory(s)
                     traj.pop()
                     traj.reverse()
+                    tmp3 = traj.pop()
+                    while (not stop.__eq__(tmp3)):
+                        tmp3 = traj.pop()
+                    traj.append(stop)
                     return trajectory(tmp2)+traj
                 for child in s.expand():
                     if(not child in Explored):
