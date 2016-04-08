@@ -27,17 +27,21 @@ class Aestrella:
 	def search(start,stop,heuristic):
 		agenda = queue.PriorityQueue()
 		explored = set() #tabla hash
+		memoria = 1
 		if(stop(start)):
-			return trajectory(start)
+			return (trajectory(start),memoria)
 
 		agenda.put((0,start))
-
+		
 		while (not agenda.empty()):
 			nodo = agenda.get()
 			if(stop(nodo[1])):
-				return trajectory(nodo[1])
+				return (trajectory(nodo[1]),memoria)
+				
 			explored.add(nodo[1])
 			for child in nodo[1].expand():
 				if(not child in explored):
 					agenda.put((child.depth+heuristic(child),child))
-		return False			
+					if(agenda.qsize()>memoria):
+						memoria=agenda.qsize()
+		return (False,0)			
