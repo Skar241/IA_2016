@@ -25,25 +25,29 @@ from search import trajectory
 
 class IDA:
 
-	def search(start,stop,heuristic):
-		agenda = queue.PriorityQueue()
-		explored = set()
-		if(stop(start)):
-			return trajectory(start)
-		cota = 1
-		while (True):
-			agenda.put((0,start))
-			while (not agenda.empty()):
-				nodo = agenda.get()
-				if(stop(nodo[1])):
-					return trajectory(nodo[1])
-				explored.add(nodo[1])
-				for child in nodo[1].expand():
-					if(not child in explored):
-						if(cota -1 > child.depth+heuristic(child)):
-							agenda.put((child.depth+heuristic(child),child))
-			cota += 1
-			agenda = queue.PriorityQueue()
-			explored = set()
+    def search(start,stop,heuristic):
+        agenda = queue.PriorityQueue()
+        explored = set()
+        memoria = 1
+        if(stop(start)):
+            return (trajectory(start),memoria)
+        cota = 1
+        while (True):
+            agenda.put((0,start))
+            while (not agenda.empty()):
+                nodo = agenda.get()
+                if(stop(nodo[1])):
+                    return (trajectory(nodo[1]),memoria)
+                explored.add(nodo[1])
+                for child in nodo[1].expand():
+                    if(not child in explored):
+                        if(cota -1 > child.depth+heuristic(child)):
+                            agenda.put((child.depth+heuristic(child),child))
+                            if(agenda.qsize()>memoria):
+                                memoria=agenda.qsize()
+            cota += 1
+            agenda = queue.PriorityQueue()
+            explored = set()
+            memoria=1
 
 			
