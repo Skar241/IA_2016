@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Artificial Intellence 1766
 Engineering Faculty
@@ -23,8 +24,9 @@ class ID:
     def search(start,stop):
         agenda=deque()
         explored=set()
+        memoria=1
         if(stop(start)):
-            return trajectory(start)
+            return (trajectory(start),memoria)
         agenda.append(start)
         depth=1
         while(True):
@@ -33,11 +35,14 @@ class ID:
                 explored.add(nodo)
                 for child in nodo.expand():
                     if(stop(child)):
-                        return trajectory(child)
+                        return (trajectory(child),memoria)
                     elif(not child in explored and child.depth<depth-1):
                         agenda.append(child)
+                        if(len(agenda)>memoria):
+                            memoria=len(agenda)
             depth+=1
             agenda=deque()
             explored=set()
+            memoria=1
             agenda.append(start)
 
