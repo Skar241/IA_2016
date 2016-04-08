@@ -14,7 +14,7 @@ Algoritmo de Busqueda Bidireccional, implementado para un puzzle de 15 piezas
 Ejecucion:
     p = Puzzle()
     p.shuffle(10)
-    solucion = Aestrella.search(p,Puzzle())
+    solucion = Bidireccional.search(p,Puzzle())
     print (solucion)
 
 """
@@ -28,6 +28,8 @@ class Bidirectional:
         Explored = set()
         Forward.add(start)
         Backward.add(stop)
+        memoria1=1
+        memoria2=1
         
         while (True):
             ForwardCpy = Forward.copy()
@@ -47,10 +49,12 @@ class Bidirectional:
                     while(not stop.__eq__(tmp2)):
                         tmp2 = traj.pop()
                     traj.append(stop)
-                    return trajectory(s)+traj
+                    return (trajectory(s)+traj,memoria1+memoria2)
                 for child in s.expand():
                     if(not child in Explored):
                         Forward.add(child)
+                        if(len(Forward)>memoria1):
+                            memoria1=len(Forward)
             
             BackwardCpy = Backward.copy()
             while (BackwardCpy):
@@ -69,7 +73,9 @@ class Bidirectional:
                     while (not stop.__eq__(tmp3)):
                         tmp3 = traj.pop()
                     traj.append(stop)
-                    return trajectory(tmp2)+traj
+                    return (trajectory(tmp2)+traj,memoria1+memoria2)
                 for child in s.expand():
                     if(not child in Explored):
                         Backward.add(child)
+                        if(len(Backward)>memoria2):
+                            memoria2=len(Backward)
