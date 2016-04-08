@@ -24,16 +24,16 @@ class DFBB:
         
     def search(start,stop,cota):
         solucion = DLS.search(start,stop,cota)
-        best = False
-        while (solucion):
-            best = solucion.copy()
+        best = (False,0)
+        while(solucion[0]):
+            best = solucion
             cota -= 1
             solucion = DLS.search(start,stop,cota)
-        if(best):
+        if(best[0]):
             print ("The solution was found with k = "+str(cota))
-            return best
+            return (best[0],best[1])
         else:
-            return False
+            return (False,0)
                 
             
         
