@@ -60,7 +60,7 @@ def test(p,p1,stop,heuristic):
 		print("Elapsed time: "+str(elapsedTime)+" seconds ")
 		print("Max nodes in agenda+expanded list: "+str(solution[1]+len(solution[0])-1))
 		input("Press Enter key to continue: ")
-
+"""
 p = Puzzle()
 stop = lambda n: n == Puzzle()
 heuristic = lambda h : ManhattanDistance().distance_to_target(h)
@@ -68,3 +68,30 @@ p.shuffle(int(input("Insert the numer of movements: ")))
 print ("Puzzle to find a solution: ")
 print (p)
 test(p,Puzzle(),stop,heuristic)
+"""
+stop = lambda n: heuristic(n) <=-10
+heuristic = lambda h : -ManhattanDistance().distance_to_target(h)
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 10): ")
+test(Puzzle(),tmp[0][-1],stop,heuristic)
+"""
+stop = lambda n: heuristic(n) <=-20
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 20): ")
+test(Puzzle(),tmp[0][-1],stop,heuristic)
+
+stop = lambda n: heuristic(n) <=-30
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 30): ")
+test(Puzzle(),tmp[0][-1],stop,heuristic)
+  
+stop = lambda n: heuristic(n) <=-40
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 40): ")
+test(Puzzle(),tmp[0][-1],stop,heuristic)
+
+stop = lambda n: heuristic(n) <=-50
+tmp = algoritms[1](Puzzle(),stop,heuristic)
+print ("Puzzle to find (depth 40): ")
+test(Puzzle(),tmp[0][-1],stop,heuristic)
+"""
