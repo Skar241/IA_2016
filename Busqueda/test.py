@@ -69,8 +69,10 @@ print ("Puzzle to find a solution: ")
 print (p)
 test(p,Puzzle(),stop,heuristic)
 """
-stop = lambda n: heuristic(n) <=-10
 heuristic = lambda h : -ManhattanDistance().distance_to_target(h)
+#heuristica necesaria para todas las siguientes pruebas
+
+stop = lambda n: heuristic(n) <=-10
 tmp = algoritms[1](Puzzle(),stop,heuristic)
 print ("Puzzle to find (depth 10): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
