@@ -54,11 +54,11 @@ def test(p,p1,stop,heuristic):
 			print (solution[0])
 			print("General stats of: "+titles[i])
 			print ("Number of steps: "+str(len(solution[0])-1))
+			print("Max nodes in agenda+expanded list: "+str(solution[1]+len(solution[0])-1))
 		else:
 			print("Gerneral stats of: "+titles[i])
 			print ("solution was not found ")
 		print("Elapsed time: "+str(elapsedTime)+" seconds ")
-		print("Max nodes in agenda+expanded list: "+str(solution[1]+len(solution[0])-1))
 		input("Press Enter key to continue: ")
 """
 p = Puzzle()
@@ -71,6 +71,7 @@ test(p,Puzzle(),stop,heuristic)
 """
 heuristic = lambda h : -ManhattanDistance().distance_to_target(h)
 #heuristica necesaria para todas las siguientes pruebas
+print ("wait, the program is searching a solution for bidirectional search")
 """
 stop = lambda n: heuristic(n) <=-10
 tmp = algoritms[1](Puzzle(),stop,heuristic)
@@ -78,21 +79,21 @@ print ("Puzzle to find (depth 10): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
 
 stop = lambda n: heuristic(n) <=-20
-tmp = algoritms[5](Puzzle(),stop)
+tmp = algoritms[1](Puzzle(),stop,heuristic)
 print ("Puzzle to find (depth 20): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
 
 stop = lambda n: heuristic(n) <=-30
-tmp = algoritms[5](Puzzle(),stop)
+tmp = algoritms[1](Puzzle(),stop,heuristic)
 print ("Puzzle to find (depth 30): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
   
 stop = lambda n: heuristic(n) <=-40
-tmp = algoritms[5](Puzzle(),stop)
+tmp = algoritms[1](Puzzle(),stop,heuristic)
 print ("Puzzle to find (depth 40): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
 """
 stop = lambda n: heuristic(n) <=-50
-tmp = algoritms[5](Puzzle(),stop)
+tmp = algoritms[4](Puzzle(),stop,22)
 print ("Puzzle to find (depth 50): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
