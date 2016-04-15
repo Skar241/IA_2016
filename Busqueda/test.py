@@ -72,9 +72,9 @@ print (p)
 test(p,Puzzle(),stop,heuristic)
 """
 
-heuristic = lambda h : -ManhattanDistance().distance_to_target(h)
+heuristic = lambda h : -ManhattanDistance().distance_to_target(h)*100
 depth=int(input("\nsolution depth (positive integer): "))
-stop = lambda n: heuristic(n) <=-depth
+stop = lambda n: heuristic(n) <=-depth*100
 print ("wait, the program is searching a puzzle using A*")
 tmp = algoritms[1](Puzzle(),stop,heuristic)
 inicio=tmp[0][-1]
