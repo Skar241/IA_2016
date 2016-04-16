@@ -18,54 +18,55 @@ Ejecucion:
     print (solucion)
 
 """
+from collections import deque
 from search import trajectory
 
 class Bidirectional:
     
     def search(start,stop):
-        Forward = set()
-        Backward = set()
+        Forward = deque()
+        Backward = deque()
         Explored = set()
-        Forward.add(start)
-        Backward.add(stop)
+        Forward.append(start)
+        Backward.append(stop)
         memoria1=1
         memoria2=1
         
         while (True):
-            ForwardCpy = Forward.copy()
+            ForwardCpy = deque(Forward)
             while(ForwardCpy):
-                Forward.pop()
-                s = ForwardCpy.pop()
+                Forward.popleft()
+                s = ForwardCpy.popleft()
                 Explored.add(s)
                 if(s in Backward):
-                    tmp = Backward.copy()
-                    tmp2 = tmp.pop()
+                    tmp = deque(Backward)
+                    tmp2 = tmp.popleft()
                     while(not s.__eq__(tmp2)):
-                        tmp2 = tmp.pop()
+                        tmp2 = tmp.popleft()
                     traj = trajectory(tmp2)
                     traj.pop()
                     traj.reverse()
                     tmp2 = traj.pop()
                     while(not stop.__eq__(tmp2)):
-                        tmp2 = traj.pop()
+                        tmp2 = traj.popleft()
                     traj.append(stop)
                     return (trajectory(s)+traj,memoria1+memoria2)
                 for child in s.expand():
                     if(not child in Explored):
-                        Forward.add(child)
+                        Forward.append(child)
                         if(len(Forward)>memoria1):
                             memoria1=len(Forward)
             
-            BackwardCpy = Backward.copy()
+            BackwardCpy = deque(Backward)
             while (BackwardCpy):
-                Backward.pop()
-                s = BackwardCpy.pop()
+                Backward.popleft()
+                s = BackwardCpy.popleft()
                 Explored.add(s)
                 if(s in Forward):
-                    tmp = Forward.copy()
+                    tmp = deque(Forward)
                     tmp2 = tmp.pop()
                     while(not s.__eq__(tmp2)):
-                        tmp2 = tmp.pop()
+                        tmp2 = tmp.popleft()
                     traj = trajectory(s)
                     traj.pop()
                     traj.reverse()
@@ -76,6 +77,6 @@ class Bidirectional:
                     return (trajectory(tmp2)+traj,memoria1+memoria2)
                 for child in s.expand():
                     if(not child in Explored):
-                        Backward.add(child)
+                        Backward.append(child)
                         if(len(Backward)>memoria2):
                             memoria2=len(Backward)

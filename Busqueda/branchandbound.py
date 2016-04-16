@@ -24,6 +24,7 @@ class DFBB:
         
     def search(start,stop,cota):
         solucion = DLS.search(start,stop,cota)
+        memoria=solucion[1]
         best = (False,0)
         while(solucion[0]):
             best = solucion
@@ -31,7 +32,7 @@ class DFBB:
             solucion = DLS.search(start,stop,cota)
         if(best[0]):
             print ("The solution was found with k = "+str(cota))
-            return (best[0],best[1])
+            return (best[0],memoria)
         else:
             return (False,0)
                 

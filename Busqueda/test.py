@@ -35,7 +35,7 @@ titles = {
 	}
 
 def test(p,p1,stop,heuristic):
-	k = int(input("insert the value of k: "))
+	k = int(input("insert the value of max depth (DLS & DFBB): "))
 	input("Press Enter key to init: ") 
 
 	for i in range(1,7):
@@ -60,6 +60,8 @@ def test(p,p1,stop,heuristic):
 			print ("solution was not found ")
 		print("Elapsed time: "+str(elapsedTime)+" seconds ")
 		input("Press Enter key to continue: ")
+
+
 """
 p = Puzzle()
 stop = lambda n: n == Puzzle()
@@ -69,32 +71,22 @@ print ("Puzzle to find a solution: ")
 print (p)
 test(p,Puzzle(),stop,heuristic)
 """
-heuristic = lambda h : -ManhattanDistance().distance_to_target(h)
-#heuristica necesaria para todas las siguientes pruebas
-print ("wait, the program is searching a solution for bidirectional search")
-"""
-stop = lambda n: heuristic(n) <=-10
-tmp = algoritms[1](Puzzle(),stop,heuristic)
-print ("Puzzle to find (depth 10): ")
-test(Puzzle(),tmp[0][-1],stop,heuristic)
 
-stop = lambda n: heuristic(n) <=-20
+heuristic = lambda h : -ManhattanDistance().distance_to_target(h)*100
+depth=int(input("\nsolution depth (positive integer): "))
+stop = lambda n: heuristic(n) <=-depth*100
+print ("wait, the program is searching a puzzle using A*")
 tmp = algoritms[1](Puzzle(),stop,heuristic)
-print ("Puzzle to find (depth 20): ")
-test(Puzzle(),tmp[0][-1],stop,heuristic)
-"""
-stop = lambda n: heuristic(n) <=-30
-tmp = algoritms[1](Puzzle(),stop,heuristic)
-print ("Puzzle to find (depth 30): ")
-test(Puzzle(),tmp[0][-1],stop,heuristic)
-"""  
-stop = lambda n: heuristic(n) <=-40
-tmp = algoritms[1](Puzzle(),stop,heuristic)
-print ("Puzzle to find (depth 40): ")
-test(Puzzle(),tmp[0][-1],stop,heuristic)
 
-stop = lambda n: heuristic(n) <=-50
-tmp = algoritms[4](Puzzle(),stop,52)
-print ("Puzzle to find (depth 50): ")
-test(Puzzle(),tmp[0][-1],stop,heuristic)
+inicio=tmp[0][-1]
+print ("Puzzle to find (depth "+str(depth)+"): \n"+str(inicio))
+
 """
+search configurations
+"""
+inicio.parent=None
+inicio.depth=0
+stop=lambda n: n == Puzzle()
+heuristic=lambda h: ManhattanDistance().distance_to_target(h)
+test(inicio,Puzzle(),stop,heuristic)
+
