@@ -82,18 +82,19 @@ stop = lambda n: heuristic(n) <=-20
 tmp = algoritms[1](Puzzle(),stop,heuristic)
 print ("Puzzle to find (depth 20): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
-
+"""
 stop = lambda n: heuristic(n) <=-30
 tmp = algoritms[1](Puzzle(),stop,heuristic)
 print ("Puzzle to find (depth 30): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
-  
+"""  
 stop = lambda n: heuristic(n) <=-40
 tmp = algoritms[1](Puzzle(),stop,heuristic)
 print ("Puzzle to find (depth 40): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
-"""
+
 stop = lambda n: heuristic(n) <=-50
-tmp = algoritms[4](Puzzle(),stop,22)
+tmp = algoritms[4](Puzzle(),stop,52)
 print ("Puzzle to find (depth 50): ")
 test(Puzzle(),tmp[0][-1],stop,heuristic)
+"""
