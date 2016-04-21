@@ -28,10 +28,10 @@ class DFBB:
         best = (False,0)
         while(solucion[0]):
             best = solucion
-            cota -= 1
+            cota = solucion[0][-1].depth - 1
             solucion = DLS.search(start,stop,cota)
         if(best[0]):
-            print ("The solution was found with k = "+str(cota))
+            print ("The solution was found with k = "+str(cota+1))
             return (best[0],memoria)
         else:
             return (False,0)
