@@ -23,7 +23,6 @@ class ID:
     @staticmethod    
     def search(start,stop):
         agenda=deque()
-        explored=set()
         memoria=1
         if(stop(start)):
             return (trajectory(start),memoria)
@@ -32,17 +31,15 @@ class ID:
         while(True):
             while(agenda):
                 nodo=agenda.pop()
-                explored.add(nodo)
                 for child in nodo.expand():
                     if(stop(child)):
                         return (trajectory(child),memoria)
-                    elif(not child in explored and child.depth<depth-1):
+                    elif(child.depth<depth-1):
                         agenda.append(child)
                         if(len(agenda)>memoria):
                             memoria=len(agenda)
             depth+=1
             agenda=deque()
-            explored=set()
             memoria=1
             agenda.append(start)
 
