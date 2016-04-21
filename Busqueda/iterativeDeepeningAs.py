@@ -31,7 +31,8 @@ class IDA:
         memoria = 1
         if(stop(start)):
             return (trajectory(start),memoria)
-        cota = 1
+        cota = heuristic(start)
+        mini = 0
         while (True):
             agenda.put((0,start))
             while (not agenda.empty()):
@@ -41,13 +42,18 @@ class IDA:
                 explored.add(nodo[1])
                 for child in nodo[1].expand():
                     if(not child in explored):
-                        if(cota -1 > child.depth+heuristic(child)):
+                        if(cota > child.depth+heuristic(child)):
                             agenda.put((child.depth+heuristic(child),child))
                             if(agenda.qsize()>memoria):
                                 memoria=agenda.qsize()
-            cota += 1
+                        elif (child.depth+heuristic(child) != cota):
+                            if(mini == 0 or mini > child.depth+heuristic(child)):
+                                mini = child.depth+heuristic(child)
+                        
+            cota = mini
             agenda = queue.PriorityQueue()
             explored = set()
             memoria=1
+            mini = 0
 
 			
